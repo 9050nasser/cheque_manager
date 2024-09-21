@@ -1,0 +1,256 @@
+{
+ "actions": [],
+ "autoname": "format:{bank}-{cheque_number}",
+ "creation": "2024-07-27 17:33:13.675878",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_or69",
+  "amended_from",
+  "company",
+  "posting_date",
+  "cheque_date",
+  "cheque_due_date",
+  "cheque_treasury",
+  "cheque_treasury_from",
+  "column_break_ebuu",
+  "payment_type",
+  "cheque_number",
+  "bank",
+  "bank_account",
+  "party_details_section",
+  "party_type",
+  "party",
+  "party_name",
+  "section_break_qaon",
+  "paid_amount_egp",
+  "section_break_stce",
+  "get_outstanding_invoices",
+  "payment_references",
+  "section_break_msdx",
+  "cheque_image",
+  "image_vujx"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_or69",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "cheque",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "cheque_date",
+   "fieldtype": "Date",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "label": "Cheque Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "cheque_due_date",
+   "fieldtype": "Date",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "label": "Cheque Due Date ",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.payment_type == 'Receive'",
+   "fieldname": "cheque_treasury",
+   "fieldtype": "Link",
+   "label": "Cheque treasury to",
+   "options": "Account"
+  },
+  {
+   "depends_on": "eval:doc.payment_type == 'Pay'",
+   "fieldname": "cheque_treasury_from",
+   "fieldtype": "Link",
+   "label": "Cheque treasury from",
+   "options": "Account"
+  },
+  {
+   "fieldname": "column_break_ebuu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "bold": 1,
+   "fieldname": "payment_type",
+   "fieldtype": "Select",
+   "label": "Payment Type",
+   "options": "\nReceive\nPay"
+  },
+  {
+   "bold": 1,
+   "fieldname": "cheque_number",
+   "fieldtype": "Data",
+   "in_filter": 1,
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Cheque Number",
+   "reqd": 1
+  },
+  {
+   "fieldname": "bank",
+   "fieldtype": "Link",
+   "in_filter": 1,
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "label": "Bank",
+   "options": "Bank",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.bank",
+   "fieldname": "bank_account",
+   "fieldtype": "Link",
+   "label": "Bank Account",
+   "options": "Bank Account"
+  },
+  {
+   "fieldname": "party_details_section",
+   "fieldtype": "Section Break",
+   "label": "Party details"
+  },
+  {
+   "fieldname": "party_type",
+   "fieldtype": "Select",
+   "in_filter": 1,
+   "in_list_view": 1,
+   "label": "Party type",
+   "options": "Customer\nSupplier\nEmployee\nShareholder",
+   "reqd": 1
+  },
+  {
+   "fieldname": "party",
+   "fieldtype": "Dynamic Link",
+   "label": "Party",
+   "options": "party_type"
+  },
+  {
+   "fieldname": "party_name",
+   "fieldtype": "Data",
+   "label": "Party Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_qaon",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "paid_amount_egp",
+   "fieldtype": "Currency",
+   "label": "Paid Amount (EGP)",
+   "non_negative": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_stce",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "eval:doc.docstatus==0",
+   "fieldname": "get_outstanding_invoices",
+   "fieldtype": "Button",
+   "label": "Get Outstanding Invoices"
+  },
+  {
+   "fieldname": "payment_references",
+   "fieldtype": "Table",
+   "label": "Payment References",
+   "options": "Payment Entry Reference"
+  },
+  {
+   "fieldname": "section_break_msdx",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "cheque_image",
+   "fieldtype": "Attach Image",
+   "label": "cheque image"
+  },
+  {
+   "depends_on": "eval:doc.cheque_image",
+   "fieldname": "image_vujx",
+   "fieldtype": "Image",
+   "options": "cheque_image"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting Date",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-08-06 22:00:54.622529",
+ "modified_by": "Administrator",
+ "module": "Cheque Manager",
+ "name": "cheque",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts Manager",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Accounts User",
+   "select": 1,
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
